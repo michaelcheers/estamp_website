@@ -365,47 +365,60 @@ function initFormHandling() {
 
     if (!form) return;
 
+    const submitBtn = form.querySelector('.btn-submit');
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const submitBtn = form.querySelector('.btn-submit');
         const originalText = submitBtn.textContent;
 
         // Show loading state
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        // Gather form data
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
+        // Clear previous status
+        status.className = 'form-status';
+        status.textContent = '';
 
-        // Simulate form submission (replace with actual endpoint)
-        try {
-            // For demo purposes, we'll just show success after a delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
+        // Collect form data
+        const formData = {
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            organization: form.organization ? form.organization.value.trim() : '',
+            role: form.role ? form.role.value.trim() : '',
+            message: form.message.value.trim() + '\n\n[Sent from LynxSeal.com]'
+        };
 
-            // Show success message
-            status.textContent = 'Thank you! Your message has been sent. I\'ll get back to you soon.';
-            status.className = 'form-status success';
-
-            // Reset form
-            form.reset();
-
-            // Animate success
-            gsap.from(status, {
-                opacity: 0,
-                y: -10,
-                duration: 0.4
-            });
-
-        } catch (error) {
-            status.textContent = 'Something went wrong. Please try again or reach out directly.';
-            status.className = 'form-status error';
+        // Basic validation
+        if (!formData.name || !formData.email) {
+            showStatus('error', 'Please fill in all required fields.');
+            resetSubmitButton();
+            return;
         }
 
-        // Reset button
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
+        try {
+            const response = await fetch('https://plugin.supertranslations.com/api/contact?source=portfolio', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                showStatus('success', result.message);
+                form.reset();
+            } else {
+                showStatus('error', result.message || 'An error occurred. Please try again.');
+            }
+        } catch (error) {
+            console.error('Contact form error:', error);
+            showStatus('error', 'An error occurred. Please try again later.');
+        }
+
+        resetSubmitButton();
 
         // Hide status after 5 seconds
         setTimeout(() => {
@@ -419,6 +432,21 @@ function initFormHandling() {
             });
         }, 5000);
     });
+
+    function showStatus(type, message) {
+        status.className = `form-status ${type}`;
+        status.textContent = message;
+        gsap.from(status, {
+            opacity: 0,
+            y: -10,
+            duration: 0.4
+        });
+    }
+
+    function resetSubmitButton() {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+    }
 
     // Input focus animations
     const inputs = form.querySelectorAll('input, textarea');
