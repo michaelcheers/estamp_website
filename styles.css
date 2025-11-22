@@ -153,23 +153,34 @@ body {
     z-index: 2;
 }
 
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(245, 158, 11, 0.15);
-    color: var(--accent);
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: 24px;
-    border: 1px solid rgba(245, 158, 11, 0.3);
+.hero-trusted {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.hero-badge-logo {
-    height: 20px;
-    vertical-align: middle;
+.hero-trusted p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.trusted-logos {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.trusted-logos img {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+    background: white;
+    padding: 20px 32px;
+    border-radius: 12px;
 }
 
 .hero h1 {
@@ -198,7 +209,7 @@ body {
 .hero-stats {
     display: flex;
     gap: 48px;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 }
 
 .hero-stat {

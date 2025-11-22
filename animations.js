@@ -79,17 +79,12 @@ function initNavigation() {
 function initHeroAnimations() {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-    tl.from('.hero-badge', {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        delay: 0.2
-    })
-    .from('.hero h1', {
+    tl.from('.hero h1', {
         opacity: 0,
         y: 30,
-        duration: 0.8
-    }, '-=0.3')
+        duration: 0.8,
+        delay: 0.2
+    })
     .from('.hero-subtitle', {
         opacity: 0,
         y: 20,
@@ -101,16 +96,21 @@ function initHeroAnimations() {
         duration: 0.5,
         stagger: 0.1
     }, '-=0.3')
-    .from('.hero-cta .btn-primary', {
+    .fromTo('.hero-cta .btn-primary',
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.5 },
+        '-=0.2'
+    )
+    .fromTo('.hero-cta .btn-secondary',
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.5 },
+        '-=0.3'
+    )
+    .from('.hero-trusted', {
         opacity: 0,
-        x: -20,
-        duration: 0.5
-    }, '-=0.2')
-    .from('.hero-cta .btn-secondary', {
-        opacity: 0,
-        x: -20,
-        duration: 0.5
-    }, '-=0.3');
+        y: 20,
+        duration: 0.6
+    }, '-=0.2');
 
     // Animate hero visual
     gsap.fromTo('.hero-visual',
