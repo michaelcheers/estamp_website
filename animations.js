@@ -380,12 +380,14 @@ function initFormHandling() {
         status.className = 'form-status';
         status.textContent = '';
 
-        // Collect form data
+        // Collect form data - map to API fields
+        const org = form.organization ? form.organization.value.trim() : '';
+        const role = form.role ? form.role.value.trim() : '';
+        const reasonParts = [org, role].filter(Boolean);
         const formData = {
             name: form.name.value.trim(),
             email: form.email.value.trim(),
-            organization: form.organization ? form.organization.value.trim() : '',
-            role: form.role ? form.role.value.trim() : '',
+            reason: reasonParts.join(' - ') || '',
             message: form.message.value.trim() + '\n\n[Sent from LynxSeal.com]'
         };
 
