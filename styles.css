@@ -6,21 +6,21 @@
 }
 
 :root {
-    --primary: #1e40af;
-    --primary-dark: #1e3a8a;
-    --primary-light: #3b82f6;
-    --accent: #f59e0b;
-    --accent-dark: #d97706;
-    --dark: #0f172a;
-    --dark-lighter: #1e293b;
-    --text: #1e293b;
-    --text-light: #64748b;
-    --text-muted: #94a3b8;
-    --bg: #ffffff;
-    --bg-alt: #f8fafc;
-    --success: #10b981;
+    --primary: #22d3ee;
+    --primary-dark: #06b6d4;
+    --primary-light: #67e8f9;
+    --accent: #22d3ee;
+    --accent-dark: #06b6d4;
+    --dark: #0a0a0a;
+    --dark-lighter: #171717;
+    --text: #fafafa;
+    --text-light: #a3a3a3;
+    --text-muted: #737373;
+    --bg: #0a0a0a;
+    --bg-alt: #171717;
+    --success: #22c55e;
     --error: #ef4444;
-    --border: #e2e8f0;
+    --border: #262626;
 }
 
 body {
@@ -429,6 +429,10 @@ body {
     margin-bottom: 16px;
 }
 
+.section h3 {
+    color: var(--text);
+}
+
 .section-subtitle {
     font-size: 1.125rem;
     color: var(--text-light);
@@ -443,7 +447,7 @@ body {
 }
 
 .problem-card {
-    background: white;
+    background: var(--bg-alt);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 32px;
@@ -478,6 +482,10 @@ body {
     font-weight: 600;
     color: var(--text);
     margin-bottom: 12px;
+}
+
+.problem-card p {
+    color: var(--text-light);
 }
 
 .problem-card p {
@@ -590,7 +598,7 @@ body {
 }
 
 .feature-card {
-    background: white;
+    background: var(--bg-alt);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 32px;
@@ -629,6 +637,10 @@ body {
 
 .feature-card > p {
     color: var(--text-light);
+}
+
+.feature-card > p {
+    color: var(--text-light);
     font-size: 0.9rem;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -660,7 +672,7 @@ body {
 }
 
 .deployment-card {
-    background: white;
+    background: var(--bg-alt);
     border: 2px solid var(--border);
     border-radius: 20px;
     padding: 36px;
@@ -688,6 +700,10 @@ body {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--text);
+}
+
+.deployment-org {
+    color: var(--text-light);
 }
 
 .deployment-badge {
@@ -847,7 +863,7 @@ body {
 }
 
 .use-case {
-    background: white;
+    background: var(--bg-alt);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 32px;
@@ -881,6 +897,10 @@ body {
     font-weight: 600;
     color: var(--text);
     margin-bottom: 12px;
+}
+
+.use-case p {
+    color: var(--text-light);
 }
 
 .use-case p {
@@ -948,11 +968,12 @@ body {
 }
 
 .contact-form {
-    background: white;
+    background: var(--bg-alt);
     padding: 40px;
     border-radius: 20px;
     text-align: left;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border);
 }
 
 .form-row {
