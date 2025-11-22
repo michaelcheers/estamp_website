@@ -223,16 +223,19 @@ function initScrollAnimations() {
     });
 
     // Deployment cards
-    gsap.from('.deployment-card', {
-        scrollTrigger: {
-            trigger: '.deployments-grid',
-            start: 'top 80%'
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.6,
-        stagger: 0.2
-    });
+    gsap.fromTo('.deployment-card',
+        { opacity: 0, y: 40 },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.2,
+            scrollTrigger: {
+                trigger: '.deployments-grid',
+                start: 'top 80%'
+            }
+        }
+    );
 
     // Global content
     gsap.from('.global-problem, .global-vision', {
@@ -325,36 +328,33 @@ function initCounterAnimations() {
         }
     });
 
-    // Deployment stats animation
-    gsap.utils.toArray('.dep-number').forEach(stat => {
-        const text = stat.textContent.trim();
-        const hasPlus = text.includes('+');
-        const numericValue = parseInt(text.replace(/[^0-9]/g, ''));
+    // Deployment stats animation - trigger on the grid, animate all at once
+    ScrollTrigger.create({
+        trigger: '.deployments-grid',
+        start: 'top 80%',
+        onEnter: () => {
+            gsap.utils.toArray('.dep-number').forEach(stat => {
+                const text = stat.textContent.trim();
+                const hasPlus = text.includes('+');
+                const numericValue = parseInt(text.replace(/[^0-9]/g, ''));
 
-        if (!isNaN(numericValue)) {
-            ScrollTrigger.create({
-                trigger: stat,
-                start: 'top 90%',
-                onEnter: () => {
-                    const finalValue = numericValue;
+                if (!isNaN(numericValue)) {
                     let currentValue = { val: 0 };
-
                     gsap.to(currentValue, {
-                        val: finalValue,
+                        val: numericValue,
                         duration: 1.5,
                         ease: 'power2.out',
                         onUpdate: function() {
-                            const displayVal = Math.round(currentValue.val);
-                            stat.textContent = displayVal + (hasPlus ? '+' : '');
+                            stat.textContent = Math.round(currentValue.val) + (hasPlus ? '+' : '');
                         },
                         onComplete: function() {
                             stat.textContent = text;
                         }
                     });
-                },
-                once: true
+                }
             });
-        }
+        },
+        once: true
     });
 }
 
