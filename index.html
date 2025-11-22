@@ -37,18 +37,32 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <svg class="logo-icon" viewBox="0 0 40 40" width="34" height="34">
-                    <!-- Lynx head silhouette with ear tufts, inside hexagonal seal -->
-                    <polygon points="20,2 36,11 36,29 20,38 4,29 4,11" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <!-- Lynx face outline -->
-                    <path d="M13 28 Q13 18 20 14 Q27 18 27 28" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <!-- Left ear with tuft -->
-                    <path d="M13 18 L10 8 L14 12" fill="currentColor"/>
-                    <!-- Right ear with tuft -->
-                    <path d="M27 18 L30 8 L26 12" fill="currentColor"/>
+                <svg class="logo-icon" viewBox="0 0 48 48" width="38" height="38">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#fcd34d"/>
+                            <stop offset="100%" style="stop-color:#b45309"/>
+                        </linearGradient>
+                        <linearGradient id="eyeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#6ee7b7"/>
+                            <stop offset="100%" style="stop-color:#059669"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Gold coin base -->
+                    <circle cx="24" cy="24" r="22" fill="url(#goldGradient)"/>
+                    <!-- Embossed rims -->
+                    <circle cx="24" cy="24" r="19" fill="none" stroke="#fef3c7" stroke-width="1.5"/>
+                    <circle cx="24" cy="24" r="16" fill="none" stroke="#fef3c7" stroke-width="0.5"/>
+                    <!-- Lynx face -->
+                    <path d="M24 36 Q17 34 15 26 Q15 20 18 17 L15 10 L20 14 Q22 12 24 12 Q26 12 28 14 L33 10 L30 17 Q33 20 33 26 Q31 34 24 36Z" fill="#92400e" opacity="0.3"/>
+                    <path d="M24 36 Q17 34 15 26 Q15 20 18 17 L15 10 L20 14 Q22 12 24 12 Q26 12 28 14 L33 10 L30 17 Q33 20 33 26 Q31 34 24 36Z" fill="none" stroke="#92400e" stroke-width="1.5"/>
                     <!-- Eyes -->
-                    <circle cx="16" cy="21" r="2" fill="currentColor"/>
-                    <circle cx="24" cy="21" r="2" fill="currentColor"/>
+                    <ellipse cx="20" cy="22" rx="2.5" ry="3" fill="url(#eyeGradient)"/>
+                    <ellipse cx="28" cy="22" rx="2.5" ry="3" fill="url(#eyeGradient)"/>
+                    <ellipse cx="20" cy="22" rx="0.8" ry="2.2" fill="#1c1917"/>
+                    <ellipse cx="28" cy="22" rx="0.8" ry="2.2" fill="#1c1917"/>
+                    <circle cx="19" cy="21" r="0.8" fill="white" opacity="0.8"/>
+                    <circle cx="27" cy="21" r="0.8" fill="white" opacity="0.8"/>
                 </svg>
                 LynxSeal
             </div>
@@ -582,10 +596,26 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <svg class="logo-icon" viewBox="0 0 40 40" width="34" height="34">
-                        <path d="M12 6 L12 28 L28 28" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M8 34 L32 34" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                        <circle cx="28" cy="12" r="4" fill="currentColor"/>
+                    <svg class="logo-icon" viewBox="0 0 48 48" width="34" height="34">
+                        <defs>
+                            <linearGradient id="goldGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fcd34d"/>
+                                <stop offset="100%" style="stop-color:#b45309"/>
+                            </linearGradient>
+                            <linearGradient id="eyeGradientFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6ee7b7"/>
+                                <stop offset="100%" style="stop-color:#059669"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="24" cy="24" r="22" fill="url(#goldGradientFooter)"/>
+                        <circle cx="24" cy="24" r="19" fill="none" stroke="#fef3c7" stroke-width="1.5"/>
+                        <circle cx="24" cy="24" r="16" fill="none" stroke="#fef3c7" stroke-width="0.5"/>
+                        <path d="M24 36 Q17 34 15 26 Q15 20 18 17 L15 10 L20 14 Q22 12 24 12 Q26 12 28 14 L33 10 L30 17 Q33 20 33 26 Q31 34 24 36Z" fill="#92400e" opacity="0.3"/>
+                        <path d="M24 36 Q17 34 15 26 Q15 20 18 17 L15 10 L20 14 Q22 12 24 12 Q26 12 28 14 L33 10 L30 17 Q33 20 33 26 Q31 34 24 36Z" fill="none" stroke="#92400e" stroke-width="1.5"/>
+                        <ellipse cx="20" cy="22" rx="2.5" ry="3" fill="url(#eyeGradientFooter)"/>
+                        <ellipse cx="28" cy="22" rx="2.5" ry="3" fill="url(#eyeGradientFooter)"/>
+                        <ellipse cx="20" cy="22" rx="0.8" ry="2.2" fill="#1c1917"/>
+                        <ellipse cx="28" cy="22" rx="0.8" ry="2.2" fill="#1c1917"/>
                     </svg>
                     <span>LynxSeal</span>
                 </div>
