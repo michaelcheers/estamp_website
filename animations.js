@@ -113,13 +113,10 @@ function initHeroAnimations() {
     }, '-=0.3');
 
     // Animate hero visual
-    gsap.from('.hero-visual', {
-        opacity: 0,
-        scale: 0.9,
-        duration: 1,
-        delay: 0.5,
-        ease: 'power2.out'
-    });
+    gsap.fromTo('.hero-visual',
+        { opacity: 0, scale: 0.9 },
+        { opacity: 0.4, scale: 1, duration: 1, delay: 0.5, ease: 'power2.out' }
+    );
 
     // Subtle floating animation for stamp demo
     gsap.to('.stamp-demo', {
@@ -303,21 +300,23 @@ function initCounterAnimations() {
     const stats = document.querySelectorAll('.hero-stat .stat-number');
 
     stats.forEach(stat => {
-        const text = stat.textContent;
+        const text = stat.textContent.trim();
         const hasPlus = text.includes('+');
         const numericValue = parseInt(text.replace(/[^0-9]/g, ''));
 
         if (!isNaN(numericValue) && numericValue > 10) {
-            // Animate larger numbers
-            gsap.from(stat, {
-                textContent: 0,
+            // Store original text and set starting value
+            const finalValue = numericValue;
+            let currentValue = { val: 0 };
+
+            gsap.to(currentValue, {
+                val: finalValue,
                 duration: 2,
                 delay: 0.5,
                 ease: 'power2.out',
-                snap: { textContent: 1 },
                 onUpdate: function() {
-                    const current = Math.round(this.targets()[0].textContent);
-                    stat.textContent = current.toLocaleString() + (hasPlus ? '+' : '');
+                    const displayVal = Math.round(currentValue.val);
+                    stat.textContent = displayVal.toLocaleString() + (hasPlus ? '+' : '');
                 },
                 onComplete: function() {
                     stat.textContent = text;
@@ -328,7 +327,7 @@ function initCounterAnimations() {
 
     // Deployment stats animation
     gsap.utils.toArray('.dep-number').forEach(stat => {
-        const text = stat.textContent;
+        const text = stat.textContent.trim();
         const hasPlus = text.includes('+');
         const numericValue = parseInt(text.replace(/[^0-9]/g, ''));
 
@@ -337,14 +336,16 @@ function initCounterAnimations() {
                 trigger: stat,
                 start: 'top 90%',
                 onEnter: () => {
-                    gsap.from(stat, {
-                        textContent: 0,
+                    const finalValue = numericValue;
+                    let currentValue = { val: 0 };
+
+                    gsap.to(currentValue, {
+                        val: finalValue,
                         duration: 1.5,
                         ease: 'power2.out',
-                        snap: { textContent: 1 },
                         onUpdate: function() {
-                            const current = Math.round(this.targets()[0].textContent);
-                            stat.textContent = current + (hasPlus ? '+' : '');
+                            const displayVal = Math.round(currentValue.val);
+                            stat.textContent = displayVal + (hasPlus ? '+' : '');
                         },
                         onComplete: function() {
                             stat.textContent = text;
